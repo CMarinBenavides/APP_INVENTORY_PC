@@ -5,13 +5,19 @@
 
 package com.archerprop.appinventorypc;
 
+import lombok.extern.log4j.Log4j2;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
 /**
  *
  * @author Aschente
  */
+@SpringBootApplication
+@Log4j2
 public class AppInventoryPC {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        SpringApplication.run(AppInventoryPC.class, args);
     }
 }
