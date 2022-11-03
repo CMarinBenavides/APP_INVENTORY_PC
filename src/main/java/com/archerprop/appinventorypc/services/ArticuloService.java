@@ -75,18 +75,18 @@ public class ArticuloService {
     public String actualizarArticulo(String serial, int stock, float precioU) {
         return serial;
         // try {
-        //     if (articuloRepositorio.findBySerial(serial)) {
-        //         Articulos articulo = articuloRepositorio.findById(serial).get();
-        //         articulo.setStock(stock);
-        //         articulo.setPrecioU(precioU);
-        //         entityManager.merge(articulo);
-        //         return "Articulo actualizado";
-        //     } else {
-        //         return "El articulo no existe";
-        //     }
+        // if (articuloRepositorio.findBySerial(serial)) {
+        // Articulos articulo = articuloRepositorio.findById(serial).get();
+        // articulo.setStock(stock);
+        // articulo.setPrecioU(precioU);
+        // entityManager.merge(articulo);
+        // return "Articulo actualizado";
+        // } else {
+        // return "El articulo no existe";
+        // }
         // } catch (Exception e) {
-        //     log.error("Error al actualizar el articulo: " + e.getMessage());
-        //     return "Error al actualizar el articulo";
+        // log.error("Error al actualizar el articulo: " + e.getMessage());
+        // return "Error al actualizar el articulo";
         // }
     }
 
