@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-AppInventoryPC<AppInventoryPC>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.archerprop.appinventorypc.AppInventoryPC",
+            "projectName": "AppInventoryPC",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
