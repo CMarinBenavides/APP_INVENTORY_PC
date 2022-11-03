@@ -21,7 +21,7 @@ import com.github.javafaker.Faker;
  */
 @SpringBootTest
 @ActiveProfiles("test")
-public class AppInAppInventoryPCTest {
+public class AppInventoryPCTest {
 
     @Autowired
     private ArticuloService articuloService;
