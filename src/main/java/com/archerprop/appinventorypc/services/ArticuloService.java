@@ -27,67 +27,67 @@ public class ArticuloService {
     @Transactional
     public boolean crearArticulo(Articulos articulo) {
         return false;
-        // try {
-        // if (!articuloRepositorio.findBySerial(articulo.getSerial())) {
-        // articuloRepositorio.save(articulo);
-        // return true;
-        // } else {
-        // return false;
-        // }
-        // } catch (Exception e) {
-        // log.error("Error al crear el articulo: " + e.getMessage());
-        // return false;
-        // }
+        try {
+            if (!articuloRepositorio.findBySerial(articulo.getSerial())) {
+                articuloRepositorio.save(articulo);
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception e) {
+            log.error("Error al crear el articulo: " + e.getMessage());
+            return false;
+        }
     }
 
     public List<Articulos> leerArticulos() {
         return null;
-        // return articuloRepositorio.findAll();
+        return articuloRepositorio.findAll();
     }
 
     public List<Articulos> leerArticulosSimilaresN(String nombre) {
         return null;
-        // return articuloRepositorio.findByNombreContaining(nombre);
+        return articuloRepositorio.findByNombreContaining(nombre);
     }
 
     public List<Articulos> leerArticulosSimilaresS(String serial) {
         return null;
-        // return articuloRepositorio.findBySerialContaining(serial);
+        return articuloRepositorio.findBySerialContaining(serial);
     }
 
     @Transactional
     public String modificarArticulo(Articulos articulo) {
         return null;
-        // try {
-        // if (articuloRepositorio.findBySerial(articulo.getSerial())) {
-        // entityManager.merge(articulo);
-        // return "Articulo actualizado";
-        // } else {
-        // return "El articulo no existe";
-        // }
-        // } catch (Exception e) {
-        // log.error("Error al actualizar el articulo: " + e.getMessage());
-        // return "Error al actualizar el articulo";
-        // }
+        try {
+            if (articuloRepositorio.findBySerial(articulo.getSerial())) {
+                entityManager.merge(articulo);
+                return "Articulo actualizado";
+            } else {
+                return "El articulo no existe";
+            }
+        } catch (Exception e) {
+            log.error("Error al actualizar el articulo: " + e.getMessage());
+            return "Error al actualizar el articulo";
+        }
     }
 
     @Transactional
     public String actualizarArticulo(String serial, int stock, float precioU) {
         return serial;
-        // try {
-        // if (articuloRepositorio.findBySerial(serial)) {
-        // Articulos articulo = articuloRepositorio.findById(serial).get();
-        // articulo.setStock(stock);
-        // articulo.setPrecioU(precioU);
-        // entityManager.merge(articulo);
-        // return "Articulo actualizado";
-        // } else {
-        // return "El articulo no existe";
-        // }
-        // } catch (Exception e) {
-        // log.error("Error al actualizar el articulo: " + e.getMessage());
-        // return "Error al actualizar el articulo";
-        // }
+        try {
+            if (articuloRepositorio.findBySerial(serial)) {
+                Articulos articulo = articuloRepositorio.findById(serial).get();
+                articulo.setStock(stock);
+                articulo.setPrecioU(precioU);
+                entityManager.merge(articulo);
+                return "Articulo actualizado";
+            } else {
+                return "El articulo no existe";
+            }
+        } catch (Exception e) {
+            log.error("Error al actualizar el articulo: " + e.getMessage());
+            return "Error al actualizar el articulo";
+        }
     }
 
 }

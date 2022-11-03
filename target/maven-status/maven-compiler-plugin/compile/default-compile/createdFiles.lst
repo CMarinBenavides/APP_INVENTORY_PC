@@ -1,0 +1,6 @@
+com\archerprop\appinventorypc\controller\AppController.class
+com\archerprop\appinventorypc\entidad\Articulos.class
+com\archerprop\appinventorypc\controller\RegistroController.class
+com\archerprop\appinventorypc\services\ArticuloService.class
+com\archerprop\appinventorypc\AppInventoryPC.class
+com\archerprop\appinventorypc\services\AppInventoryPC.class
