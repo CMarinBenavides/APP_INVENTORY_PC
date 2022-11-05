@@ -20,4 +20,5 @@ public class AppInventoryPC {
     public static void main(String[] args) {
         SpringApplication.run(AppInventoryPC.class, args);
     }
+
 }
