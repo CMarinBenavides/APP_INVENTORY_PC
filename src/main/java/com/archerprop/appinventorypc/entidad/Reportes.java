@@ -17,15 +17,14 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Articulos implements Serializable {
+public class Reportes implements Serializable {
 
     @Id
-    private String serial;
+    private int numReporte;
 
     private String nombre;
-    private int stock;
-    private float precioU;
-    private float precioB;
-    private Date fechModi;
-    private int Proveedor;
+    private Date fechaR;
+    private int inventario;
+    private int empleado;
+    private String articulo;
 }

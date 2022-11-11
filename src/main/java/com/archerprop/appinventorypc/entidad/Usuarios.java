@@ -1,7 +1,6 @@
 package com.archerprop.appinventorypc.entidad;
 
 import java.io.Serializable;
-import java.sql.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -17,15 +16,14 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Articulos implements Serializable {
+public class Usuarios implements Serializable {
 
     @Id
-    private String serial;
+    private int cedula;
 
     private String nombre;
-    private int stock;
-    private float precioU;
-    private float precioB;
-    private Date fechModi;
-    private int Proveedor;
+    private String apellido;
+    private String correo;
+    private String clave;
+    private int tipo;
 }
