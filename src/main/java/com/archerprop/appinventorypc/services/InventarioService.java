@@ -8,9 +8,11 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.criteria.CriteriaBuilder.In;
+
 import lombok.extern.log4j.Log4j2;
 import com.archerprop.appinventorypc.entidad.Articulos;
-import com.archerprop.appinventorypc.repositorios.InventarioArticuloRepositorio;
+import com.archerprop.appinventorypc.repositorios.InventarioRepositorio;
 
 /**
  *
@@ -24,10 +26,10 @@ public class InventarioService {
     private EntityManager entityManager;
 
     @Autowired
-    private InventarioArticuloRepositorio inventarioArticuloRepositorio;
+    private InventarioRepositorio inventarioRepositorio;
 
     @Transactional
-    public boolean crearArticulo(Articulos articulo) {
+    public boolean agregarArticulo(Articulos articulo) {
         return false;
     }
 }
