@@ -25,5 +25,7 @@ public class Usuarios implements Serializable {
     private String apellido;
     private String correo;
     private String clave;
-    private int tipo;
+    private int tipoE;
+    private int tipoP;
+
 }

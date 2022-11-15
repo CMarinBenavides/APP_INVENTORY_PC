@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.archerprop.appinventorypc.services.InventarioService;
+import com.archerprop.appinventorypc.services.UsuarioService;
 
 /**
  *
@@ -32,4 +33,5 @@ public class InventarioController {
     // public String obtenerRegistro() {
     // return "registro";
     // }
+
 }

@@ -14,6 +14,10 @@ import lombok.extern.log4j.Log4j2;
 import com.archerprop.appinventorypc.entidad.Articulos;
 import com.archerprop.appinventorypc.repositorios.ArticuloRepositorio;
 
+/**
+ *
+ * @author Aschente
+ */
 @Service
 @Log4j2
 public class ArticuloService {
@@ -24,17 +28,14 @@ public class ArticuloService {
     @Autowired
     private ArticuloRepositorio articuloRepositorio;
 
-    @Transactional
+    // @Transactional
     public boolean crearArticulo(Articulos articulo) {
         if (articulo == null) {
             return false;
         }
-        if (articulo.getNombre() == null || articulo.getSerial() == null || articulo.getStock() <= 0
-                || articulo.getPrecioU() <= 0 || articulo.getFechModi() == null || articulo.getProveedor() <= 0) {
-            return false;
-        }
         try {
             if (!articuloRepositorio.existsBySerial(articulo.getSerial())) {
+                System.out.println("entro");
                 articuloRepositorio.save(articulo);
                 return true;
             } else {
@@ -50,10 +51,6 @@ public class ArticuloService {
     @Transactional
     public boolean modificarArticulo(Articulos articulo) {
         if (articulo == null) {
-            return false;
-        }
-        if (articulo.getNombre() == null || articulo.getSerial() == null || articulo.getStock() <= 0
-                || articulo.getPrecioU() <= 0 || articulo.getFechModi() == null || articulo.getProveedor() <= 0) {
             return false;
         }
         try {
@@ -88,4 +85,41 @@ public class ArticuloService {
             return false;
         }
     }
+
+    @Transactional
+    public boolean verificar(Articulos articulo) {
+        if (articulo == null) {
+            return false;
+        }
+        try {
+            if (articuloRepositorio.existsBySerial(articulo.getSerial())) {
+                return true;
+            } else {
+                return false;
+            }
+
+        } catch (Exception e) {
+            log.error("Error al verificar el articulo: " + e.getMessage());
+            return false;
+        }
+    }
+
+    public List<Articulos> listarArticulos() {
+        try {
+            return articuloRepositorio.findAll();
+        } catch (Exception e) {
+            log.error("Error al listar los articulos: " + e.getMessage());
+            return null;
+        }
+    }
+
+    public List<Articulos> listarArticulosPorNombre(String nombre) {
+        try {
+            return articuloRepositorio.findByNombreContaining(nombre);
+        } catch (Exception e) {
+            log.error("Error al listar los articulos por nombre: " + e.getMessage());
+            return null;
+        }
+    }
+
 }
