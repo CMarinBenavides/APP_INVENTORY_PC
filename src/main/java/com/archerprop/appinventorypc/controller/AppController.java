@@ -41,7 +41,8 @@ public class AppController {
             System.out.println(usuarioDTO);
             return "redirect:/index?error";
         }
-        return "redirect:/gestor?none";
+        Usuarios usuario = usuarioService.obtenerUsuario(usuarioDTO.getCorreo());
+        return "redirect:/gestor?none/" + usuario.getCedula();
     }
 
     @ModelAttribute("user")

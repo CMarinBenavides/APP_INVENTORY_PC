@@ -97,4 +97,16 @@ public class UsuarioService {
             return false;
         }
     }
+
+    @Transactional
+    public Usuarios obtenerUsuario(String correo) {
+        try {
+            Usuarios usuario = usuarioRepositorio.findByCorreo(correo);
+            return usuario;
+        } catch (Exception e) {
+
+            log.error("Error al obtener el usuario: " + e.getMessage());
+            return null;
+        }
+    }
 }

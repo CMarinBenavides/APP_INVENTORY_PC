@@ -326,4 +326,18 @@ public class AppInventoryPCTest {
         assertTrue(usuarioAutenticado);
     }
 
+    @Test
+    public void testearServicioObtenerUsuario() {
+        Faker faker = new Faker();
+        Usuarios usuario = new Usuarios();
+        usuario.setCedula(1000621475);
+        usuario.setNombre(faker.name().name());
+        usuario.setApellido(faker.name().lastName());
+        usuario.setCorreo("hilario.pacocha@yahoo.com");
+        usuario.setClave("1234");
+        usuario.setTipoP(1);
+        usuario.setTipoE(0);
+        Usuarios usuarioObtenido = usuarioService.obtenerUsuario(usuario.getCorreo());
+        assertNotNull(usuarioObtenido);
+    }
 }
