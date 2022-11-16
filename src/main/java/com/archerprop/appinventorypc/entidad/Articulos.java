@@ -5,6 +5,9 @@ import java.sql.Timestamp;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -28,4 +31,5 @@ public class Articulos implements Serializable {
     private float precioB;
     private Timestamp fechModi;
     private int Proveedor;
+
 }

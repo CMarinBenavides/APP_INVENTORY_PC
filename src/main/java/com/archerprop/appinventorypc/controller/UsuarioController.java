@@ -2,8 +2,10 @@ package com.archerprop.appinventorypc.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -29,19 +31,29 @@ public class UsuarioController {
 
     int count = 0;
 
-    @PostMapping
-    public String verificar(@ModelAttribute("articulo") Articulos articuloDTO) {
+    @GetMapping("/gestor/{id}")
+    public String iniciarGestor2(@PathVariable String id, Model modelo) {
+        int idCliente = Integer.parseInt(id);
+        modelo.addAttribute("idcliente", idCliente);
+        return "/gestor";
+    }
+
+    @PostMapping("/gestor/{id}")
+    public String verificar(@PathVariable String id, @ModelAttribute("articulo") Articulos articuloDTO) {
+        int idCliente = Integer.parseInt(id);
         if (!articuloService.verificar(articuloDTO)) {
             if (count > 0) {
                 System.out.println("Articulo segundo");
                 articuloDTO.setPrecioB(articuloDTO.getPrecioU() * articuloDTO.getStock());
                 System.out.println(articuloDTO.getPrecioB());
                 articuloDTO.setFechModi(new java.sql.Timestamp(new java.util.Date().getTime()));
+                articuloDTO.setProveedor(idCliente);
                 articuloService.crearArticulo(articuloDTO);
                 count = 0;
                 return "redirect:gestor?none&success";
             } else {
                 count++;
+                System.out.println(articuloDTO);
                 return "redirect:gestor?new";
             }
         }

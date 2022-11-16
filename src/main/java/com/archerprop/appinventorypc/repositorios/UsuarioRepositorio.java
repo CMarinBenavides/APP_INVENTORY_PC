@@ -14,7 +14,7 @@ public interface UsuarioRepositorio extends JpaRepository<Usuarios, Integer> {
 
     public boolean existsByCedula(int cedula);
 
-    public Usuarios findByCorreo(String correo);;
+    public Usuarios findByCorreo(String correo);
 
     public List<Usuarios> findByNombreContaining(String nombre);
 

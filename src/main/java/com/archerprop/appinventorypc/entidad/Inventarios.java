@@ -37,4 +37,5 @@ public class Inventarios implements Serializable {
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "inventario_articulo", joinColumns = @JoinColumn(name = "idInventario"), inverseJoinColumns = @JoinColumn(name = "serial"))
     private List<Articulos> articulos = new ArrayList<Articulos>();
+
 }
