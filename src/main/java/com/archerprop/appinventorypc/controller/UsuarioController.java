@@ -34,7 +34,7 @@ public class UsuarioController {
     @GetMapping("/gestor/{id}")
     public String iniciarGestor2(@PathVariable String id, Model modelo) {
         int idCliente = Integer.parseInt(id);
-        modelo.addAttribute("idcliente", idCliente);
+        modelo.addAttribute("idCliente", idCliente);
         return "/gestor";
     }
 

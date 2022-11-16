@@ -74,8 +74,8 @@
           aria-labelledby="add-tab"
         >
           <form
-            th:action="@{/gestor}+${idCliente}"
-            th:if="${param.none}"
+            th:action="@{/gestor/}+${idCliente}"
+            th:if="${param.none} and ${idCliente != null}"
             method="post"
             th:object="${articulo}"
           >
@@ -115,7 +115,7 @@
             </div>
           </form>
           <form
-            th:action="@{/gestor}"
+            th:action="@{/gestor/}+${idCliente}"
             th:if="${param.old}"
             method="post"
             th:object="${articulo}"
@@ -149,7 +149,7 @@
             </div>
           </form>
           <form
-            th:action="@{/gestor}"
+            th:action="@{/gestor/}+${idCliente}"
             th:if="${param.new}"
             method="post"
             th:object="${articulo}"
