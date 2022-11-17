@@ -10,7 +10,7 @@ import com.archerprop.appinventorypc.entidad.Usuarios;
 @Repository
 public interface UsuarioRepositorio extends JpaRepository<Usuarios, Integer> {
 
-    public boolean findByCedula(int cedula);
+    public Usuarios findByCedula(int cedula);
 
     public boolean existsByCedula(int cedula);
 

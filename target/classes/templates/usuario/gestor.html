@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -73,13 +73,11 @@
           role="tabpanel"
           aria-labelledby="add-tab"
         >
-          <form
-            th:action="@{/gestor/}+${idCliente}"
-            th:if="${param.none} and ${idCliente != null}"
-            method="post"
-            th:object="${articulo}"
-          >
-            <div class="mb-3">
+          <form th:action="@{/}+${id}" method="post" th:object="${articulo}">
+            <div
+              class="mb-3"
+              th:if="${param.none} OR ${param.success} OR ${param.new}"
+            >
               <label for="serial">Serial</label>
               <input
                 type="text"
@@ -93,7 +91,10 @@
                 required
               />
             </div>
-            <div class="mb-3">
+            <div
+              class="mb-3"
+              th:if="${param.none} OR ${param.success} OR ${param.new}"
+            >
               <label for="nombre" class="form-label">Nombre</label>
               <input
                 type="text"
@@ -104,23 +105,7 @@
                 required
               />
             </div>
-            <div class="d-grid">
-              <button
-                type="submit"
-                class="btn btn-primary"
-                onclick="return checkSerial();"
-              >
-                Agregar
-              </button>
-            </div>
-          </form>
-          <form
-            th:action="@{/gestor/}+${idCliente}"
-            th:if="${param.old}"
-            method="post"
-            th:object="${articulo}"
-          >
-            <div class="mb-3">
+            <div class="mb-3" th:if="${param.new} OR ${param.old}">
               <label for="stock" class="form-label">Stock</label>
               <input
                 type="number"
@@ -129,61 +114,7 @@
                 th:field="*{stock}"
               />
             </div>
-            <div class="mb-3">
-              <label for="precioU" class="form-label">Precio Unitario</label>
-              <input
-                type="number"
-                class="form-control"
-                id="precioU"
-                th:field="*{precioU}"
-              />
-            </div>
-            <div class="d-grid">
-              <button
-                type="submit"
-                class="btn btn-primary"
-                onclick="return checkSerial();"
-              >
-                Agregar
-              </button>
-            </div>
-          </form>
-          <form
-            th:action="@{/gestor/}+${idCliente}"
-            th:if="${param.new}"
-            method="post"
-            th:object="${articulo}"
-          >
-            <div class="mb-3">
-              <label for="serial">Serial</label>
-              <input
-                type="text"
-                class="form-control"
-                id="serial"
-                th:field="*{serial}"
-                maxlength="5"
-                minlength="5"
-              />
-            </div>
-            <div class="mb-3">
-              <label for="nombre" class="form-label">Nombre</label>
-              <input
-                type="text"
-                class="form-control"
-                id="nombre"
-                th:field="*{nombre}"
-              />
-            </div>
-            <div class="mb-3">
-              <label for="stock" class="form-label">Stock</label>
-              <input
-                type="number"
-                class="form-control"
-                id="stock"
-                th:field="*{stock}"
-              />
-            </div>
-            <div class="mb-3">
+            <div class="mb-3" th:if="${param.new} OR ${param.old}">
               <label for="precioU" class="form-label">Precio Unitario</label>
               <input
                 type="number"
@@ -233,9 +164,7 @@
           id="reporte"
           role="tabpanel"
           aria-labelledby="report-tab"
-        >
-          hola
-        </div>
+        ></div>
       </div>
     </div>
 
@@ -249,7 +178,7 @@
     th:src="@{/js/jquery-3.6.0.min.js}"
   ></script>
   <script src="static/js/functions.js" th:src="@{/js/functions.js}"></script>
-  <script th:if="${param.success}">
+  <script th:if="${param.success}" th:inline="javascript">
     Swal.fire({
       title: "Articulo agregado",
       text: "El articulo se agrego correctamente",
@@ -259,7 +188,8 @@
       toast: true,
       position: "top-end",
     }).then(() => {
-      window.location.href = "/gestor?none";
+      var id = /*[[${id}]]*/ "0";
+      window.location.href = "/gestor/" + id + "?none";
     });
   </script>
 </html>

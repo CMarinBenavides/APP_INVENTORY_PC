@@ -292,6 +292,23 @@ public class AppInventoryPCTest {
     }
 
     @Test
+    public void testearServicioListarArticulosPorProveedor() {
+        Faker faker = new Faker();
+        Articulos articulo = new Articulos();
+        articulo.setNombre(faker.name().fullName());
+        articulo.setSerial("adios");
+        articulo.setStock(10);
+        articulo.setPrecioU(10);
+        articulo.setFechModi(new Timestamp(new Date(0).getTime()));
+        articulo.setProveedor(10);
+
+        int proveedor = articulo.getProveedor();
+        List<Articulos> articulos = articuloService.listarArticulosPorProveedor(proveedor);
+        assertNotNull(articulos);
+        assertFalse(articulos.isEmpty());
+    }
+
+    @Test
     public void testearServicioCrearUsuario() {
         Faker faker = new Faker();
         Usuarios usuario = new Usuarios();
@@ -333,11 +350,51 @@ public class AppInventoryPCTest {
         usuario.setCedula(1000621475);
         usuario.setNombre(faker.name().name());
         usuario.setApellido(faker.name().lastName());
-        usuario.setCorreo("hilario.pacocha@yahoo.com");
+        usuario.setCorreo("provtest@test.com");
         usuario.setClave("1234");
         usuario.setTipoP(1);
         usuario.setTipoE(0);
         Usuarios usuarioObtenido = usuarioService.obtenerUsuario(usuario.getCorreo());
         assertNotNull(usuarioObtenido);
     }
+
+    @Test
+    public void testearServicioObtenerUsuarioNull() {
+        Usuarios usuarioObtenido = usuarioService.obtenerUsuario(null);
+        assertNull(usuarioObtenido);
+    }
+
+    @Test
+    public void testearServicioUsuarioExiste() {
+        Faker faker = new Faker();
+        Usuarios usuario = new Usuarios();
+        usuario.setCedula(1000621475);
+        usuario.setNombre(faker.name().name());
+        usuario.setApellido(faker.name().lastName());
+        usuario.setCorreo("provtest@test.com");
+        usuario.setClave("1234");
+        usuario.setTipoP(1);
+        usuario.setTipoE(0);
+
+        Boolean usuarioExiste = usuarioService.usuarioExiste(usuario.getCedula());
+        assertTrue(usuarioExiste);
+    }
+
+    @Test
+    public void testearServicioObtenerUsuarioPorCedula() {
+        Faker faker = new Faker();
+        Usuarios usuario = new Usuarios();
+        usuario.setCedula(1000621475);
+        usuario.setNombre(faker.name().name());
+        usuario.setApellido(faker.name().lastName());
+        usuario.setCorreo("sin@sin.com");
+        usuario.setClave("1234");
+        usuario.setTipoP(1);
+        usuario.setTipoE(0);
+
+        Usuarios usuarioObtenido = usuarioService.obtenerUsuarioConCedula(usuario.getCedula());
+        assertNotNull(usuarioObtenido);
+
+    }
+
 }

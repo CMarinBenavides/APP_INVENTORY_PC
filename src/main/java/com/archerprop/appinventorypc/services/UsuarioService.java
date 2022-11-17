@@ -109,4 +109,27 @@ public class UsuarioService {
             return null;
         }
     }
+
+    public boolean usuarioExiste(int cedula) {
+        try {
+            if (usuarioRepositorio.existsByCedula(cedula)) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception e) {
+            log.error("Error al verificar si el usuario existe: " + e.getMessage());
+            return false;
+        }
+    }
+
+    public Usuarios obtenerUsuarioConCedula(int cedula) {
+        try {
+            Usuarios usuario = usuarioRepositorio.findByCedula(cedula);
+            return usuario;
+        } catch (Exception e) {
+            log.error("Error al obtener el usuario: " + e.getMessage());
+            return null;
+        }
+    }
 }

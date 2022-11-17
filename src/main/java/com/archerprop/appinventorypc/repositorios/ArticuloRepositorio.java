@@ -16,9 +16,11 @@ public interface ArticuloRepositorio extends JpaRepository<Articulos, String> {
 
     public boolean findBySerial(String serial);
 
-    public boolean findByNombre(int nombre);
+    public boolean findByNombre(String nombre);
 
     public List<Articulos> findByNombreContaining(String nombre);
+
+    public List<Articulos> findByProveedorContaining(int proveedor);
 
     public boolean existsBySerial(String serial);
 

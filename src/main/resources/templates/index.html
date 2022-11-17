@@ -102,4 +102,17 @@
       window.location.href = "/index";
     });
   </script>
+  <script th:if="${param.errorNoUser}">
+    Swal.fire({
+      title: "¡Advertencia!",
+      text: "Acceso no autorizado.",
+      icon: "error",
+      showConfirmButton: false,
+      timer: 2000,
+      toast: false,
+      position: "center",
+    }).then(() => {
+      window.location.href = "/index";
+    });
+  </script>
 </html>

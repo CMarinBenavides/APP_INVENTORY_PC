@@ -122,4 +122,21 @@ public class ArticuloService {
         }
     }
 
+    public List<Articulos> listarArticulosPorProveedor(int proveedor) {
+        try {
+            List<Articulos> articulosPorProveedor = articuloRepositorio.findAll();
+            if (articulosPorProveedor.isEmpty()) {
+                return null;
+            }
+            articulosPorProveedor.stream().filter((articulo) -> (articulo.getProveedor() != proveedor))
+                    .forEachOrdered((articulo) -> {
+                        articulosPorProveedor.remove(articulo);
+                    });
+            return articulosPorProveedor;
+        } catch (Exception e) {
+            log.error("Error al listar los articulos por proveedor: " + e.getMessage());
+            return null;
+        }
+    }
+
 }
