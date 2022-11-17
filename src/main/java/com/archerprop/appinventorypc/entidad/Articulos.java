@@ -29,7 +29,7 @@ public class Articulos implements Serializable {
     private int stock;
     private float precioU;
     private float precioB;
-    private Timestamp fechModi;
+    private Timestamp fechm;
     private int proveedor;
 
 }

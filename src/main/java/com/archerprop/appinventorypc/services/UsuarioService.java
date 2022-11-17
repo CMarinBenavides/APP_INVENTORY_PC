@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -129,6 +131,23 @@ public class UsuarioService {
             return usuario;
         } catch (Exception e) {
             log.error("Error al obtener el usuario: " + e.getMessage());
+            return null;
+        }
+    }
+
+    public List<Usuarios> listarProveedores() {
+        try {
+            List<Usuarios> listaProveedores = usuarioRepositorio.findAll();
+            // se crea una lista de proveedores
+            List<Usuarios> listaProveedoresN = new ArrayList<>();
+            for (Usuarios usuario : listaProveedores) {
+                if (usuario.getTipoE() == 0 && usuario.getTipoP() != 0) {
+                    listaProveedoresN.add(usuario);
+                }
+            }
+            return listaProveedoresN;
+        } catch (Exception e) {
+            log.error("Error al listar los proveedores: " + e.getMessage());
             return null;
         }
     }

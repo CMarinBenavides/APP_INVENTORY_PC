@@ -48,7 +48,7 @@ public class AppInventoryPCTest {
         articulo.setSerial("h");
         articulo.setStock(10);
         articulo.setPrecioU(10);
-        articulo.setFechModi(new Timestamp(new Date(0).getTime()));
+        articulo.setFechm(new Timestamp(new Date(0).getTime()));
         articulo.setProveedor(10);
 
         Boolean articuloCreado = articuloService.crearArticulo(articulo);
@@ -69,7 +69,7 @@ public class AppInventoryPCTest {
         articulo.setSerial(null);
         articulo.setStock(0);
         articulo.setPrecioU(0);
-        articulo.setFechModi(null);
+        articulo.setFechm(null);
         articulo.setProveedor(0);
 
         Boolean articuloCreado = articuloService.crearArticulo(articulo);
@@ -84,7 +84,7 @@ public class AppInventoryPCTest {
         articulo.setSerial(faker.code().isbn10());
         articulo.setStock(-10);
         articulo.setPrecioU(-10);
-        articulo.setFechModi(new Timestamp(new Date(0).getTime()));
+        articulo.setFechm(new Timestamp(new Date(0).getTime()));
         articulo.setProveedor(-10);
 
         Boolean articuloCreado = articuloService.crearArticulo(articulo);
@@ -99,7 +99,7 @@ public class AppInventoryPCTest {
         articulo.setSerial(faker.code().isbn10());
         articulo.setStock(10);
         articulo.setPrecioU(10);
-        articulo.setFechModi(new Timestamp(new Date(0).getTime()));
+        articulo.setFechm(new Timestamp(new Date(0).getTime()));
         articulo.setProveedor(10);
 
         Boolean articuloCreado = articuloService.crearArticulo(articulo);
@@ -117,7 +117,7 @@ public class AppInventoryPCTest {
         articulo.setSerial("hola");
         articulo.setStock(10);
         articulo.setPrecioU(10);
-        articulo.setFechModi(new Timestamp(new Date(0).getTime()));
+        articulo.setFechm(new Timestamp(new Date(0).getTime()));
         articulo.setProveedor(10);
 
         Boolean articuloCreado = articuloService.crearArticulo(articulo);
@@ -127,7 +127,7 @@ public class AppInventoryPCTest {
         articulo.setSerial("hola");
         articulo.setStock(10);
         articulo.setPrecioU(10);
-        articulo.setFechModi(new Timestamp(new Date(0).getTime()));
+        articulo.setFechm(new Timestamp(new Date(0).getTime()));
         articulo.setProveedor(10);
 
         Boolean articuloModificado = articuloService.modificarArticulo(articulo);
@@ -149,7 +149,7 @@ public class AppInventoryPCTest {
         articulo.setSerial("hola");
         articulo.setStock(10);
         articulo.setPrecioU(10);
-        articulo.setFechModi(new Timestamp(new Date(0).getTime()));
+        articulo.setFechm(new Timestamp(new Date(0).getTime()));
         articulo.setProveedor(10);
 
         Boolean articuloCreado = articuloService.crearArticulo(articulo);
@@ -159,7 +159,7 @@ public class AppInventoryPCTest {
         articulo.setSerial(null);
         articulo.setStock(0);
         articulo.setPrecioU(0);
-        articulo.setFechModi(null);
+        articulo.setFechm(null);
         articulo.setProveedor(0);
 
         Boolean articuloModificado = articuloService.modificarArticulo(articulo);
@@ -174,7 +174,7 @@ public class AppInventoryPCTest {
         articulo.setSerial("hola");
         articulo.setStock(10);
         articulo.setPrecioU(10);
-        articulo.setFechModi(new Timestamp(new Date(0).getTime()));
+        articulo.setFechm(new Timestamp(new Date(0).getTime()));
         articulo.setProveedor(10);
 
         Boolean articuloCreado = articuloService.crearArticulo(articulo);
@@ -184,7 +184,7 @@ public class AppInventoryPCTest {
         articulo.setSerial("hola");
         articulo.setStock(-10);
         articulo.setPrecioU(-10);
-        articulo.setFechModi(new Timestamp(new Date(0).getTime()));
+        articulo.setFechm(new Timestamp(new Date(0).getTime()));
         articulo.setProveedor(-10);
 
         Boolean articuloModificado = articuloService.modificarArticulo(articulo);
@@ -199,7 +199,7 @@ public class AppInventoryPCTest {
         articulo.setSerial("hola");
         articulo.setStock(10);
         articulo.setPrecioU(10);
-        articulo.setFechModi(new Timestamp(new Date(0).getTime()));
+        articulo.setFechm(new Timestamp(new Date(0).getTime()));
         articulo.setProveedor(10);
 
         Boolean articuloModificado = articuloService.modificarArticulo(articulo);
@@ -214,7 +214,7 @@ public class AppInventoryPCTest {
         articulo.setSerial("hola");
         articulo.setStock(10);
         articulo.setPrecioU(10);
-        articulo.setFechModi(new Timestamp(new Date(0).getTime()));
+        articulo.setFechm(new Timestamp(new Date(0).getTime()));
         articulo.setProveedor(10);
 
         Boolean articuloCreado = articuloService.crearArticulo(articulo);
@@ -239,7 +239,7 @@ public class AppInventoryPCTest {
         articulo.setSerial("hola");
         articulo.setStock(10);
         articulo.setPrecioU(10);
-        articulo.setFechModi(new Timestamp(new Date(0).getTime()));
+        articulo.setFechm(new Timestamp(new Date(0).getTime()));
         articulo.setProveedor(10);
 
         Boolean articuloEliminado = articuloService.eliminarArticulo(articulo);
@@ -254,7 +254,7 @@ public class AppInventoryPCTest {
         articulo.setSerial("hola");
         articulo.setStock(10);
         articulo.setPrecioU(10);
-        articulo.setFechModi(new Timestamp(new Date(0).getTime()));
+        articulo.setFechm(new Timestamp(new Date(0).getTime()));
         articulo.setProveedor(10);
 
         Boolean articuloCreado = articuloService.crearArticulo(articulo);
@@ -280,7 +280,7 @@ public class AppInventoryPCTest {
         articulo.setSerial("hola");
         articulo.setStock(10);
         articulo.setPrecioU(10);
-        articulo.setFechModi(new Timestamp(new Date(0).getTime()));
+        articulo.setFechm(new Timestamp(new Date(0).getTime()));
         articulo.setProveedor(10);
 
         Boolean articuloCreado = articuloService.crearArticulo(articulo);
@@ -299,7 +299,7 @@ public class AppInventoryPCTest {
         articulo.setSerial("adios");
         articulo.setStock(10);
         articulo.setPrecioU(10);
-        articulo.setFechModi(new Timestamp(new Date(0).getTime()));
+        articulo.setFechm(new Timestamp(new Date(0).getTime()));
         articulo.setProveedor(10);
 
         int proveedor = articulo.getProveedor();
@@ -397,4 +397,10 @@ public class AppInventoryPCTest {
 
     }
 
+    @Test
+    public void testearServicioListarProveedores() {
+        List<Usuarios> proveedores = usuarioService.listarProveedores();
+        assertNotNull(proveedores);
+        assertFalse(proveedores.isEmpty());
+    }
 }

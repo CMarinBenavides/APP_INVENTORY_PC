@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -128,11 +130,15 @@ public class ArticuloService {
             if (articulosPorProveedor.isEmpty()) {
                 return null;
             }
-            articulosPorProveedor.stream().filter((articulo) -> (articulo.getProveedor() != proveedor))
-                    .forEachOrdered((articulo) -> {
-                        articulosPorProveedor.remove(articulo);
-                    });
-            return articulosPorProveedor;
+            // se crea nueva lista para almacenar los articulos que coincidan con el
+            // proveedor
+            List<Articulos> articulos = new ArrayList<Articulos>();
+            for (Articulos articulo : articulosPorProveedor) {
+                if (articulo.getProveedor() == proveedor) {
+                    articulos.add(articulo);
+                }
+            }
+            return articulos;
         } catch (Exception e) {
             log.error("Error al listar los articulos por proveedor: " + e.getMessage());
             return null;

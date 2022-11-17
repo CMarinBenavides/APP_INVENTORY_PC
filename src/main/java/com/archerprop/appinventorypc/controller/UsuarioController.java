@@ -1,6 +1,9 @@
 package com.archerprop.appinventorypc.controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,9 +34,8 @@ public class UsuarioController {
     @Autowired
     UsuarioService usuarioService;
 
-    Model globalModel;
-
     int count = 0;
+    boolean flag = false;
 
     @GetMapping("/gestor")
     public String obtenerGestor1(@RequestParam int cedula, Model model) {
@@ -45,45 +47,69 @@ public class UsuarioController {
 
     @GetMapping("/gestor/{cedula}")
     public String obtenerGestor2(@PathVariable int cedula, Model model) {
-        System.out.println(cedula);
         if (cedula == 0) {
             return "redirect:/index?errorNoUser";
         }
         if (!usuarioService.usuarioExiste(cedula)) {
             return "redirect:/index?errorNoUser";
         }
-        List<Articulos> articulos = articuloService.listarArticulosPorProveedor(cedula);
         Usuarios usuario = usuarioService.obtenerUsuarioConCedula(cedula);
+        List<Articulos> articulos = articuloService.listarArticulosPorProveedor(usuario.getCedula());
+        List<Articulos> articulosT = articuloService.listarArticulos();
+        List<Usuarios> usuarios = usuarioService.listarProveedores();
+        // hacer una lista con todos los articulos pero donde el proveedor sea el nombre
+        // y apellido del usuario
+
+        Map<Integer, String> nombresProveedores = new HashMap<Integer, String>();
+        for (Usuarios u : usuarios) {
+            nombresProveedores.put(u.getCedula(), u.getNombre() + " " + u.getApellido());
+        }
+
         model.addAttribute("articulos", articulos);
-        model.addAttribute("id", cedula);
-        model.addAttribute("tipoP", usuario.getTipoP());
-        model.addAttribute("tipoE", usuario.getTipoE());
+        model.addAttribute("usuario", usuario);
+        model.addAttribute("usuarios", usuarios);
+        model.addAttribute("articulosT", articulosT);
+        model.addAttribute("nombreProveedor", nombresProveedores);
         return "usuario/gestor";
     }
 
     @PostMapping("/{id}")
     public String verificar(@PathVariable("id") int id, @ModelAttribute("articulo") Articulos articuloDTO,
             Model model) {
-        if (!articuloService.verificar(articuloDTO)) {
+        if (!articuloService.verificar(articuloDTO) && !flag) {
             if (count > 0) {
-                System.out.println("Articulo segundo");
+                flag = false;
                 articuloDTO.setPrecioB(articuloDTO.getPrecioU() * articuloDTO.getStock());
-                System.out.println(articuloDTO.getPrecioB());
-                articuloDTO.setFechModi(new java.sql.Timestamp(new java.util.Date().getTime()));
+                articuloDTO.setFechm(new java.sql.Timestamp(new java.util.Date().getTime()));
                 articuloDTO.setProveedor(id);
                 articuloService.crearArticulo(articuloDTO);
-                List<Articulos> articulos = articuloService.listarArticulosPorProveedor(id);
-                model.addAttribute("articulos", articulos);
                 count = 0;
                 return "redirect:gestor/" + id + "?success";
             } else {
                 count++;
+                flag = false;
                 articulo = articuloDTO;
                 return "redirect:gestor/" + id + "?new";
             }
         }
-
-        return "redirect:gestor/" + id + "?old";
+        if (count > 0) {
+            articuloDTO.setSerial(articulo.getSerial());
+            articuloDTO.setNombre(articulo.getNombre());
+            articuloDTO.setPrecioB(articuloDTO.getPrecioU() * articuloDTO.getStock());
+            articuloDTO.setFechm(new java.sql.Timestamp(new java.util.Date().getTime()));
+            articuloDTO.setProveedor(id);
+            if (articuloService.modificarArticulo(articuloDTO)) {
+                flag = false;
+                return "redirect:gestor/" + id + "?success";
+            } else {
+                return "redirect:gestor/" + id + "?error";
+            }
+        } else {
+            count++;
+            flag = true;
+            articulo = articuloDTO;
+            return "redirect:gestor/" + id + "?old";
+        }
     }
 
     @ModelAttribute("articulo")
