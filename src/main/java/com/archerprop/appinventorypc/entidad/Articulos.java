@@ -1,10 +1,13 @@
 package com.archerprop.appinventorypc.entidad;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.sql.Timestamp;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -26,5 +29,7 @@ public class Articulos implements Serializable {
     private int stock;
     private float precioU;
     private float precioB;
-    private Date fecha;
+    private Timestamp fechm;
+    private int proveedor;
+
 }
