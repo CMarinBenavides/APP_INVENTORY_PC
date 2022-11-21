@@ -13,6 +13,11 @@
       th:href="@{/styles/styles.css}"
       rel="stylesheet"
     />
+    <link
+      rel="shortcut icon"
+      th:href="@{/images/box-icon.png}"
+      href="static/images/box-icon.png"
+    />
     <script
       src="static/js/sweetalert2.all.min.js"
       th:src="@{/js/sweetalert2.all.min.js}"
@@ -21,7 +26,7 @@
   </head>
   <body>
     <header>
-      <div class="container border-bottom border-secondary w-100 shadow">
+      <div class="container border-bottom border-secondary w-100 shadow-lg">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
           <div class="container-fluid">
             <span class="navbar-text fw-bold text-dark">
@@ -156,7 +161,7 @@
             th:object="${articulo}"
           >
             <div
-              class="mb-3"
+              class="mb-3 mt-2"
               th:if="${param.none} OR ${param.success} OR ${param.new}"
             >
               <label for="serial">Serial</label>
@@ -235,7 +240,7 @@
               </button>
               <a
                 class="btn btn-primary btn-lg"
-                th:href="@{/gestor/}+${usuario.cedula}+@{?none}"
+                th:href="@{/gestor/}+${usuario.cedula}+@{/true?none}"
                 role="button"
               >
                 Regresar
@@ -255,6 +260,7 @@
           <table class="table table-striped table-bordered mt-2">
             <thead class="table-dark">
               <tr>
+                <th class="text-center">Serial</th>
                 <th class="text-center">Nombre</th>
                 <th class="text-center">Stock</th>
                 <th class="text-center">Precio Unitario</th>
@@ -263,6 +269,7 @@
             </thead>
             <tbody>
               <tr th:each="dato : ${articulos}">
+                <td th:text="${dato.serial}">ND</td>
                 <td th:text="${dato.nombre}">ND</td>
                 <td th:text="${dato.stock}">ND</td>
                 <td th:text="${dato.precioU}">ND</td>
@@ -281,16 +288,34 @@
         >
           <div class="d-grid gap-2 d-md-block m-3">
             <a
-              th:href="@{/gestor?reporte}"
+              th:href="@{/reporte/}+${usuario.cedula}"
               role="button"
               class="btn btn-primary"
             >
               Generar Reporte
             </a>
-            <button class="btn btn-primary" type="button">
-              Eliminar Reporte
-            </button>
+            <a
+            th:href="@{/reporte/}+${usuario.cedula}+@{/eliminar}"
+            role="button"
+            class="btn btn-primary"
+          >
+            Eliminar Reporte
+          </a>
           </div>
+          <table class="table table-striped table-bordered mt-2">
+            <thead class="table-dark">
+              <tr>
+                <th class="text-center">Reporte</th>
+                <th class="text-center">Fecha del Reporte</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr th:each="dato : ${reportes}">
+                <td th:text="${dato.numReporte}">ND</td>
+                <td th:text="${dato.fechaR}">ND</td>
+              </tr>
+            </tbody>
+          </table>
           <div class="mb border-bottom"></div>
         </div>
         <div
@@ -360,16 +385,34 @@
         >
           <div class="d-grid gap-2 d-md-block m-3">
             <a
-              th:href="@{/gestor?reporte}"
+              th:href="@{/reporte/}+${usuario.cedula}"
               role="button"
               class="btn btn-primary"
             >
               Generar Reporte
             </a>
-            <button class="btn btn-primary" type="button">
-              Eliminar Reporte
-            </button>
+            <a
+            th:href="@{/reporte/}+${usuario.cedula}+@{/eliminar}"
+            role="button"
+            class="btn btn-primary"
+          >
+            Eliminar Reporte
+          </a>
           </div>
+          <table class="table table-striped table-bordered mt-2">
+            <thead class="table-dark">
+              <tr>
+                <th class="text-center">Reporte</th>
+                <th class="text-center">Fecha del Reporte</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr th:each="dato : ${reportes}">
+                <td th:text="${dato.numReporte}">ND</td>
+                <td th:text="${dato.fechaR}">ND</td>
+              </tr>
+            </tbody>
+          </table>
           <div class="mb border-bottom"></div>
         </div>
     </div>
@@ -396,6 +439,42 @@
     }).then(() => {
       var id = /*[[${usuario.cedula}]]*/ "0";
       window.location.href = "/gestor/" + id + "?none";
+    });
+  </script>
+  <script th:if="${param.successD}" th:inline="javascript">
+    Swal.fire({
+      title: "Estado reporte",
+      text: "El Reporte se elimino correctamente",
+      icon: "error",
+      showConfirmButton: false,
+      timer: 2000,
+      toast: true,
+      position: "top-end",
+    }).then(() => {
+      var id = /*[[${usuario.cedula}]]*/ "0";
+      window.location.href = "/gestor/" + id + "?none";
+    });
+  </script>
+  <script th:if="${param.new}" th:inline="javascript">
+    Swal.fire({
+      title: "Articulo nuevo",
+      text: "Ingrese la informacion del articulo",
+      icon: "info",
+      showConfirmButton: false,
+      timer: 2000,
+      toast: false,
+      position: "center",
+    });
+  </script>
+  <script th:if="${param.old}" th:inline="javascript">
+    Swal.fire({
+      title: "Articulo antiguo",
+      text: "Actualice el stock del articulo o su precio por unidad",
+      icon: "info",
+      showConfirmButton: false,
+      timer: 2000,
+      toast: false,
+      position: "center",
     });
   </script>
 </html>

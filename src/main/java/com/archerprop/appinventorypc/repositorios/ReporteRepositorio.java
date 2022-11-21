@@ -12,5 +12,7 @@ import com.archerprop.appinventorypc.entidad.Reportes;
 @Repository
 public interface ReporteRepositorio extends JpaRepository<Reportes, Integer> {
 
-    public boolean findBynumReporte(int numReporte);
+    public Reportes findBynumReporte(int numReporte);
+
+    public boolean existsBynumReporte(int numReporte);
 }

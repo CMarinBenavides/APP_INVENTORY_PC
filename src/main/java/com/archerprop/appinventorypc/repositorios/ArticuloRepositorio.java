@@ -14,7 +14,7 @@ import com.archerprop.appinventorypc.entidad.Articulos;
 @Repository
 public interface ArticuloRepositorio extends JpaRepository<Articulos, String> {
 
-    public boolean findBySerial(String serial);
+    public Articulos findBySerial(String serial);//
 
     public boolean findByNombre(String nombre);
 
@@ -22,6 +22,6 @@ public interface ArticuloRepositorio extends JpaRepository<Articulos, String> {
 
     public List<Articulos> findByProveedorContaining(int proveedor);
 
-    public boolean existsBySerial(String serial);
+    public boolean existsBySerial(String serial);//
 
 }

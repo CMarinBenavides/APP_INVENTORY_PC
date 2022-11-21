@@ -30,14 +30,13 @@ public class ArticuloService {
     @Autowired
     private ArticuloRepositorio articuloRepositorio;
 
-    // @Transactional
+    @Transactional
     public boolean crearArticulo(Articulos articulo) {
         if (articulo == null) {
             return false;
         }
         try {
             if (!articuloRepositorio.existsBySerial(articulo.getSerial())) {
-                System.out.println("entro");
                 articuloRepositorio.save(articulo);
                 return true;
             } else {
@@ -141,6 +140,16 @@ public class ArticuloService {
             return articulos;
         } catch (Exception e) {
             log.error("Error al listar los articulos por proveedor: " + e.getMessage());
+            return null;
+        }
+    }
+
+    public Articulos obtenerArticuloPorSerial(String serial) {
+        serial = serial.toUpperCase();
+        try {
+            return articuloRepositorio.findBySerial(serial);
+        } catch (Exception e) {
+            log.error("Error al obtener el articulo por serial: " + e.getMessage());
             return null;
         }
     }

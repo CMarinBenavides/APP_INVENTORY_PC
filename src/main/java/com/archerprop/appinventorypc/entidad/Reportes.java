@@ -1,7 +1,7 @@
 package com.archerprop.appinventorypc.entidad;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.sql.Timestamp;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -22,9 +22,6 @@ public class Reportes implements Serializable {
     @Id
     private int numReporte;
 
-    private String nombre;
-    private Date fechaR;
-    private int inventario;
-    private int empleado;
-    private String articulo;
+    private int usuario;
+    private Timestamp fechaR;
 }
