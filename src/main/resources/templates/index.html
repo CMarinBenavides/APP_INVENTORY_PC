@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="static/styles/bootstrap.min.css"
+      th:href="@{/styles/bootstrap.min.css}"
+      rel="stylesheet"
+    />
+    <link
+      href="static/styles/styles.css"
+      th:href="@{/styles/styles.css}"
+      rel="stylesheet"
+    />
+    <link
+      rel="shortcut icon"
+      th:href="@{/images/box-icon.png}"
+      href="static/images/box-icon.png"
+    />
+    <script
+      src="static/js/sweetalert2.all.min.js"
+      th:src="@{/js/sweetalert2.all.min.js}"
+    ></script>
+    <title>App Inventory PC</title>
+  </head>
+  <body>
+    <div class="container w-75 bg-primary mt-5 rounded shadow">
+      <div class="row align-items-stretch">
+        <div
+          class="col bg d-none d-lg-block col-md-5 col-lg-5 col-xl-6 rounded"
+        ></div>
+        <div class="col bg-white p-5 rounded-end border border-primary">
+          <div class="text-end">
+            <img
+              src="static/images/Logo-img.png"
+              th:src="@{/images/Logo-img.png}"
+              alt="logo pequeño"
+              width="48"
+              style="border-radius: 10px"
+            />
+          </div>
+
+          <h2 class="fw-bold text-center py-5">Bienvenido</h2>
+
+          <form th:action="@{/index}" method="post" th:object="${user}">
+            <div class="mb-4">
+              <label for="correo" class="form-label">Correo electrónico</label>
+              <input
+                type="email"
+                class="form-control"
+                name="correo"
+                aria-describedby="emailHelp"
+              />
+            </div>
+            <div class="mb-4">
+              <label for="clave" class="form-label">Contraseña</label>
+              <input
+                type="password"
+                class="form-control"
+                name="clave"
+                id="password"
+              />
+            </div>
+            <div class="d-grid">
+              <button type="submit" class="btn btn-primary">
+                Iniciar sesión
+              </button>
+            </div>
+
+            <!-- <div class="my-3">
+                        <span><a href="#">Recupera tu clave</a></span>
+                    </div> -->
+          </form>
+          <div class="mb-4 form-check my-3">
+            <input
+              type="checkbox"
+              name="connected"
+              class="form-check-input"
+              onclick="mostrar()"
+            />
+            <label for="connected" class="form-check-label">Ver clave</label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script
+      src="static/js/bootstrap.bundle.min.js"
+      th:src="@{/js/bootstrap.bundle.min.js}"
+    ></script>
+  </body>
+  <script
+    src="static/js/jquery-3.6.0.min.js"
+    th:src="@{/js/jquery-3.6.0.min.js}"
+  ></script>
+  <script src="static/js/functions.js" th:src="@{/js/functions.js}"></script>
+  <script th:if="${param.error}">
+    Swal.fire({
+      title: "¡Error!",
+      text: "Usuario o clave incorrecta.",
+      icon: "error",
+      showConfirmButton: false,
+      timer: 2000,
+      toast: false,
+      position: "center",
+    }).then(() => {
+      window.location.href = "/index";
+    });
+  </script>
+  <script th:if="${param.errorNoUser}">
+    Swal.fire({
+      title: "¡Advertencia!",
+      text: "Acceso no autorizado.",
+      icon: "error",
+      showConfirmButton: false,
+      timer: 2000,
+      toast: false,
+      position: "center",
+    }).then(() => {
+      window.location.href = "/index";
+    });
+  </script>
+</html>
